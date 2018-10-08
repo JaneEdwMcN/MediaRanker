@@ -10,7 +10,7 @@
   <% if work.category == "album" %>
   <tr>
     <td>Votes</td>
-    <td><%=  work.title %></td>
+    <td><%= link_to work.title, work_path(work.id) %></td>
     <td><%=  work.creator  %></td>
     <td><%=  work.publication_year %></td>
     <td>Upvote</td>
@@ -31,7 +31,7 @@
   <% if work.category == "book" %>
   <tr>
     <td>Votes</td>
-    <td><%=  work.title %></td>
+    <td><%= link_to work.title, work_path(work.id) %></td>
     <td><%=  work.creator  %></td>
     <td><%=  work.publication_year %></td>
     <td>Upvote</td>
@@ -52,7 +52,7 @@
   <% if work.category == "movie" %>
   <tr>
     <td>Votes</td>
-    <td><%=  work.title %></td>
+    <td><%= link_to work.title, work_path(work.id) %></td>
     <td><%=  work.creator  %></td>
     <td><%=  work.publication_year %></td>
     <td>Upvote</td>

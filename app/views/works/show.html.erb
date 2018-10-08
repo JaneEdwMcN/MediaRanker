@@ -1,0 +1,18 @@
+<% if @work.nil? %>
+<h1> 404 Not found</h1>
+<% else %>
+<section>
+  <h2><%=@work[:title]%></h2>
+  <p>Created by: <%=@work[:creator]%></p>
+  <p>Published: <%=@work[:publication_year]%></p>
+  <section>
+    <%= link_to "Back to media ranks", root_path %>
+    <%= link_to "Edit", edit_work_path %>
+    Upvote
+    Delete
+  </section>
+</section>
+
+<section>
+</section>
+<% end %>
