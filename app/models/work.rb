@@ -1,13 +1,11 @@
 class Work < ApplicationRecord
-  # def self.top_albums
-  #   albums = self.books.where.not(date_published: nil)
-  #   10.times do
-  #
-  #   end
-  #   return Author.all.map do |author|
-  #     [author.name , author.id]
-  #   end
-  # end
+  validates :title, presence: true
+  validates :creator, presence: true
+  validates :publication_year, presence: true
+  validates :description, presence: true
+
+  validates :title, uniqueness: { scope: :category,
+   message: "can only occur once per category" }
 
   def self.album_list
     return Work.where(category: 'album')
