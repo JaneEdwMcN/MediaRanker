@@ -9,7 +9,7 @@
     <%= link_to "Back to media ranks", root_path %>
     <%= link_to "Edit", edit_work_path %>
     Upvote
-    Delete
+    <%= link_to "Delete", work_path(@work.id), method: :delete, data: { confirm: "Are you sure?" } %>
   </section>
 </section>
 

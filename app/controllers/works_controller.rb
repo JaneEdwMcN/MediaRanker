@@ -15,7 +15,7 @@ class WorksController < ApplicationController
   def create
     @work = Work.new(work_params)
     if @work.save
-      redirect_to root_path
+      redirect_to work_path(@work .id)
     else
       render :new
     end
@@ -27,15 +27,20 @@ class WorksController < ApplicationController
 
   def update
     @work = Work.find(params[:id].to_i)
-    # @task.name = params[:task][:name]
-    # @task.description = params[:task][:description]
     if @work.update(work_params)
-      redirect_to root_path
+      redirect_to work_path(@work .id)
     else
       render :edit
     end
-    # edit_work_path
   end
+
+  def destroy
+      id = params[:id]
+      work = Work.find_by(id: id)
+      if work.destroy
+        redirect_to root_path
+      end
+    end
 
   private
 
