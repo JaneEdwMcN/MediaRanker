@@ -6,8 +6,8 @@
   <th>Created By</th>
   <th>Published</th>
   <th>Upvote</th>
-  <% @works.each do |work| %>
-  <% if work.category == "album" %>
+
+  <% Work.album_list.each do |work| %>
   <tr>
     <td>Votes</td>
     <td><%= link_to work.title, work_path(work.id) %></td>
@@ -15,9 +15,7 @@
     <td><%=  work.publication_year %></td>
     <td>Upvote</td>
   </tr>
-
-<% end %>
-<% end %>
+  <% end %>
 </table>
 
 <h3>Books</h3>
@@ -27,8 +25,7 @@
   <th>Created By</th>
   <th>Published</th>
   <th>Upvote</th>
-  <% @works.each do |work| %>
-  <% if work.category == "book" %>
+  <% Work.book_list.each do |work| %>
   <tr>
     <td>Votes</td>
     <td><%= link_to work.title, work_path(work.id) %></td>
@@ -37,8 +34,7 @@
     <td>Upvote</td>
   </tr>
 
-<% end %>
-<% end %>
+  <% end %>
 </table>
 
 <h3>Movies</h3>
@@ -48,8 +44,7 @@
   <th>Created By</th>
   <th>Published</th>
   <th>Upvote</th>
-  <% @works.each do |work| %>
-  <% if work.category == "movie" %>
+  <% Work.movie_list.each do |work| %>
   <tr>
     <td>Votes</td>
     <td><%= link_to work.title, work_path(work.id) %></td>
@@ -57,7 +52,5 @@
     <td><%=  work.publication_year %></td>
     <td>Upvote</td>
   </tr>
-
-<% end %>
-<% end %>
+  <% end %>
 </table>

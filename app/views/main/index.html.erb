@@ -1,7 +1,47 @@
-<section>Media Spotlight</section>
+<section>
+  <h3>Media Spotlight</h3>
+</section>
 
-<section>Top </section>
+<section>
+  <section>
+    <h3>Top Albums</h3>
+    <ul>
+      <% Work.top_albums_list.each do |work| %>
+      <li>
+        <h4><%= link_to work.title, work_path(work.id) %>
+          <%=  work.creator  %>
+        </h4>
+        <p>votes</p>
+      </li>
+      <% end %>
+    </ul>
+  </section>
 
-<section>Top </section>
+  <section>
+    <h3>Top Books</h3>
+    <ul>
+      <% Work.top_books_list.each do |work| %>
+      <li>
+        <h4><%= link_to work.title, work_path(work.id) %>
+          <%=  work.creator  %>
+        </h4>
+        <p>votes</p>
+      </li>
+      <% end %>
+    </ul>
+  </section>
 
-<section>Top </section>
+  <section>
+    <h3>Top Movies</h3>
+    <ul>
+      <% Work.top_movies_list.each do |work| %>
+      <li>
+        <h4><%= link_to work.title, work_path(work.id) %>
+          <%=  work.creator  %>
+        </h4>
+        <p>votes</p>
+      </li>
+      <% end %>
+    </ul>
+  </section>
+</section>
