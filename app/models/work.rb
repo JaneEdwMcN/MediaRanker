@@ -1,4 +1,6 @@
 class Work < ApplicationRecord
+  has_many :votes
+
   validates :title, presence: true, uniqueness: { scope: :category, message: "can only occur once per category" }
   validates :creator, presence: true
   validates :publication_year, presence: true, numericality: { only_integer: true, greater_than: 0,  less_than: 2019}
