@@ -1,5 +1,7 @@
 class WorksController < ApplicationController
   def index
+    @current_user = User.find_by(id: session[:user_id])
+
     @works = Work.all
   end
 
@@ -18,7 +20,7 @@ class WorksController < ApplicationController
       flash[:success] = "Work Created!"
       redirect_to work_path(@work .id)
     else
-      flash.now[:error] = "Work not created."
+      flash.now[:danger] = "Work not created."
       @work.errors.messages.each do |field, messages|
         flash.now[field] = messages
       end
@@ -33,8 +35,13 @@ class WorksController < ApplicationController
   def update
     @work = Work.find(params[:id].to_i)
     if @work.update(work_params)
+      flash[:success] = "Work Updated!"
       redirect_to work_path(@work .id)
     else
+      flash.now[:danger] = "Work not edited."
+      @work.errors.messages.each do |field, messages|
+        flash.now[field] = messages
+      end
       render :edit
     end
   end

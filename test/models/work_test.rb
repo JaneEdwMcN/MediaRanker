@@ -1,100 +1,117 @@
 require "test_helper"
 
 describe Work do
-  let(:work) { works(:titanic) }
-  let(:work_two) { works(:the_big_lebowski) }
+  let(:titanic) { works(:titanic) }
+  let(:the_big_lebowski) { works(:the_big_lebowski) }
+  let(:tragic_kindgom) { works(:tragic_kindgom) }
+  let(:harry_potter) { works(:harry_potter) }
+  let(:harry_potter_two) { works(:harry_potter_two) }
+  let(:harry_potter_three) { works(:harry_potter_three) }
 
   it "must be valid" do
-    value(work).must_be :valid?
+    value(titanic).must_be :valid?
   end
 
   it 'is invalid without a title' do
     # Arrange
-    work.title = nil
+    titanic.title = nil
     # Act
-    result = work.valid?
+    result = titanic.valid?
     # Assert
     expect(result).must_equal false
   end
 
   it 'a title can only occur once per category ' do
     # Arrange
-    work_two.title = work.title
+    the_big_lebowski.title = titanic.title
     # Act
-    result = work_two.save
+    result = the_big_lebowski.save
     # Assert
     expect(result).must_equal false
   end
 
   it 'is invalid without a creator' do
     # Arrange
-    work.creator = nil
+    titanic.creator = nil
     # Act
-    result = work.valid?
+    result = titanic.valid?
     # Assert
     expect(result).must_equal false
   end
 
   it 'is invalid without a publication year' do
     # Arrange
-    work.publication_year = nil
+    titanic.publication_year = nil
     # Act
-    result = work.valid?
+    result = titanic.valid?
     # Assert
     expect(result).must_equal false
   end
 
   it 'a publication year must be an integer' do
     # Arrange
-    work.publication_year = "hello"
+    titanic.publication_year = "hello"
     # Act
-    result = work.valid?
+    result = titanic.valid?
     # Assert
     expect(result).must_equal false
   end
 
   it 'a publication year must be greater than 0' do
     # Arrange
-    work.publication_year = -1
+    titanic.publication_year = -1
     # Act
-    result = work.valid?
+    result = titanic.valid?
     # Assert
     expect(result).must_equal false
   end
 
   it 'a publication year must be greater less than 2019' do
     # Arrange
-    work.publication_year = 3000
+    titanic.publication_year = 3000
     # Act
-    result = work.valid?
+    result = titanic.valid?
     # Assert
     expect(result).must_equal false
   end
 
   it 'is invalid without a description' do
     # Arrange
-    work.description = nil
+    titanic.description = nil
     # Act
-    result = work.valid?
+    result = titanic.valid?
     # Assert
     expect(result).must_equal false
   end
 
   it 'a description must be 5  or more characters' do
     # Arrange
-    work.description = "cat"
+    titanic.description = "cat"
     # Act
-    result = work.valid?
+    result = titanic.valid?
     # Assert
     expect(result).must_equal false
   end
 
   it 'a description may not be more than 250 characters' do
     # Arrange
-    work.description = "testtesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttest"
+    titanic.description = "testtesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttest"
     # Act
-    result = work.valid?
+    result = titanic.valid?
     # Assert
     expect(result).must_equal false
   end
+
+  it 'display a list of albums' do
+    expect(Work.album_list[0].category).must_equal "album"
+  end
+
+  it 'display a list of Movies' do
+    expect(Work.movie_list[0].category).must_equal "movie"
+  end
+
+  it 'display a list of Books' do
+    expect(Work.book_list[0].category).must_equal "book"
+  end
+
 end
