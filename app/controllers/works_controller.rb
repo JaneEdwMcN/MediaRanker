@@ -15,8 +15,13 @@ class WorksController < ApplicationController
   def create
     @work = Work.new(work_params)
     if @work.save
+      flash[:success] = "Work Created!"
       redirect_to work_path(@work .id)
     else
+      flash.now[:error] = "Work not created."
+      @work.errors.messages.each do |field, messages|
+        flash.now[field] = messages
+      end
       render :new
     end
   end
@@ -35,12 +40,13 @@ class WorksController < ApplicationController
   end
 
   def destroy
-      id = params[:id]
-      work = Work.find_by(id: id)
-      if work.destroy
-        redirect_to root_path
-      end
+    id = params[:id]
+    work = Work.find_by(id: id)
+    if work.destroy
+      flash[:success] = "Work #{work.id} deleted!"
+      redirect_to root_path
     end
+  end
 
   private
 

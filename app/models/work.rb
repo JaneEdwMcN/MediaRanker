@@ -12,11 +12,8 @@ class Work < ApplicationRecord
 
   def self.top_albums_list
     albums =  Work.where(category: 'album')
-    if albums.length < 10
-      return albums
-    else
-      return albums[1..10]
-    end
+    return albums if albums.length < 10
+    return albums[1..10]
   end
 
   def self.book_list
@@ -25,11 +22,8 @@ class Work < ApplicationRecord
 
   def self.top_books_list
     books =  Work.where(category: 'book')
-    if books.length < 10
-      return books
-    else
-      return books[1..10]
-    end
+    return books if books.length < 10
+    return books[1..10]
   end
 
   def self.movie_list
@@ -38,11 +32,8 @@ class Work < ApplicationRecord
 
   def self.top_movies_list
     movies =  Work.where(category: 'movie')
-    if movies.length < 10
-      return movies
-    else
-      return movies[1..10]
-    end
+    return movies  if movies.length < 10
+    return movies[1..10]
   end
 
 end

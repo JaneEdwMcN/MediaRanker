@@ -22,9 +22,22 @@
       <ul>
         <li>Log In</li>
       </ul>
-
     </nav>
   </header>
+
+  <section class="flash">
+    <% flash.each do |name, message| %>
+
+    <% if message.class == Array %>
+    <% message.each do |msg| %>
+    <div class="alert-<%= name %>"><%= "#{name}: #{msg}" %></div>
+    <% end %>
+    <% else %>
+    <div class="alert-<%= name %>"><%= message %></div>
+    <% end %>
+    <% end %>
+  </section>
+
   <%= yield %>
 </body>
 </html>
