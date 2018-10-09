@@ -1,11 +1,8 @@
 class Work < ApplicationRecord
-  validates :title, presence: true
+  validates :title, presence: true, uniqueness: { scope: :category, message: "can only occur once per category" }
   validates :creator, presence: true
-  validates :publication_year, presence: true
-  validates :description, presence: true
-
-  validates :title, uniqueness: { scope: :category,
-   message: "can only occur once per category" }
+  validates :publication_year, presence: true, numericality: { only_integer: true, greater_than: 0,  less_than: 2019}
+  validates :description, presence: true, length: { in: 5..250 }
 
   def self.album_list
     return Work.where(category: 'album')

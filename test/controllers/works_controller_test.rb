@@ -1,7 +1,8 @@
 require "test_helper"
 
 describe WorksController do
-  # it "must be a real test" do
-  #   flunk "Need real tests"
-  # end
+  it "should get index" do
+    # get works_index_url
+    # value(response).must_be :success?
+  end
 end
