@@ -21,6 +21,13 @@ tragic_kindgom:
   publication_year: 1996
   description: Don't speak
 
+spice_world:
+  title: Spice World
+  category: album
+  creator: The Spice Girls
+  publication_year: 1998
+  description: Spice up your life!
+
 harry_potter:
   title: Harry Potter
   category: book
