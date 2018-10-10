@@ -20,7 +20,8 @@
       </ul>
 
       <ul>
-        <% if session[:user_id] %>
+        <% if @current_user %>
+        <li><%= link_to "Logged in as #{@current_user.name}", user_path(@current_user.id) %></li>
         <li><%= link_to "Log Out", logout_path, method: :delete %></li>
         <% else %>
         <li><%= link_to "Log In", login_path %></li>
@@ -42,10 +43,6 @@
     <div class="alert-warning">
       <%= message %></div>
     <% end %>
-    <% end %>
-
-    <% if @current_user %>
-    <h2>Welcome <%= @current_user.name %></h2>
     <% end %>
   </section>
 

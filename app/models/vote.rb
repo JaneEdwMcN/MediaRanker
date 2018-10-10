@@ -4,5 +4,4 @@ class Vote < ApplicationRecord
 
   validates :work_id, presence: true, uniqueness: { scope: :user_id, message: "only one vote per work per user" }
 
-  # validates :user_id, presence: true, uniqueness: { scope: :user_id, message: "only one vote per work per user" }
 end

@@ -1,15 +1,11 @@
 class WorksController < ApplicationController
+  before_action :find_work, only: [:show, :edit, :update, :destroy, :upvote]
+
   def index
-    @current_user = User.find_by(id: session[:user_id])
-
     @works = Work.all
-
   end
 
-  def show
-    id = params[:id]
-    @work = Work.find_by(id: id)
-  end
+  def show; end
 
   def new
     @work = Work.new
@@ -29,13 +25,10 @@ class WorksController < ApplicationController
     end
   end
 
-  def edit
-    @work = Work.find(params[:id].to_i)
-  end
+  def edit; end
 
   def update
-    @work = Work.find(params[:id].to_i)
-    if @work.update(work_params)
+    if @work && @work.update(work_params)
       flash[:success] = "Work Updated!"
       redirect_to work_path(@work .id)
     else
@@ -48,34 +41,26 @@ class WorksController < ApplicationController
   end
 
   def destroy
-    id = params[:id]
-    work = Work.find_by(id: id)
-    # work.votes.each do |vote|
-    #   vote.destroy
-    # end
-
-    if work.destroy
-
-      flash[:success] = "Work #{work.id} deleted!"
+    if !@work.nil?
+      @work.destroy
+      flash[:success] = "Work #{@work.id} deleted!"
       redirect_to root_path
     end
   end
 
   def upvote
-    id = params[:id]
-    work = Work.find_by(id: id)
     user = User.find_by(id: session[:user_id])
 
     if user != nil
-      vote = Vote.new(work_id: work.id, user_id: user.id, date: Date.today)
+      vote = Vote.new(work_id: @work.id, user_id: user.id, date: Date.today)
       if  vote.save
         flash[:success] = "Successfully upvoted!"
-        redirect_to work_path(work.id)
+        redirect_to work_path(@work.id)
       else
         vote.errors.messages.each do |field, messages|
           flash[field] = messages
         end
-        redirect_to work_path(work .id)
+        redirect_to work_path(@work .id)
       end
     else
       flash[:danger] = "You must be logged in to do that!"
@@ -87,6 +72,14 @@ class WorksController < ApplicationController
 
   def work_params
     return params.require(:work).permit(:title, :description, :publication_year, :creator, :category)
+  end
+
+  def find_work
+    @work = Work.find_by(id: params[:id].to_i)
+    if @work.nil?
+      flash.now[:warning] = "Unable to find work."
+      render :not_found
+    end
   end
 
 end

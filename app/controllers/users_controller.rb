@@ -26,7 +26,6 @@ class UsersController < ApplicationController
   end
 
   def index
-    @current_user = User.find_by(id: session[:user_id])
     @users = User.all
   end
 
