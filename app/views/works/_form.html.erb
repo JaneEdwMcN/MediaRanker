@@ -1,19 +1,33 @@
-<%= form_with model: @work, class: "to-be-named" do |f| %>
+<section>
+  <%= form_with model: @work, class: "to-be-named" do |f| %>
 
-  <%= f.label :category , "Category"%><br>
-  <%= f.select :category, [ 'album','book','movie' ] %>
+  <div class = "form-group">
+    <%= f.label :category , "Category"%><br>
+    <%= f.select :category, [ 'album','book','movie' ], class: "form-control" %>
+  </div>
 
-  <%= f.label :title, "Title: " %>
-  <%= f.text_field :title %>
+  <div class = "form-group">
+    <%= f.label :title, "Title: " %>
+    <%= f.text_field :title, class: "form-control" %>
+  </div>
 
-  <%= f.label :creator, "Creator: " %>
-  <%= f.text_field :creator %>
+  <div class = "form-group">
+    <%= f.label :creator, "Creator: " %>
+    <%= f.text_field :creator, class: "form-control" %>
+  </div>
 
-  <%= f.label :publication_year, "Publication year: " %>
-  <%= f.text_field :publication_year %>
+  <div class = "form-group">
+    <%= f.label :publication_year, "Publication year: " %>
+    <%= f.text_field :publication_year, class: "form-control" %>
+  </div>
 
-  <%= f.label :description, "Description: " %>
-  <%= f.text_field :description %>
+  <div class = "form-group">
+    <%= f.label :description, "Description: " %>
+    <%= f.text_field :description, class: "form-control" %>
+  </div>
 
-  <%= f.submit button_title %>
+  <div class = "form-group">
+    <%= f.submit button_title, class: "btn btn-primary" %>
+  </div>
   <% end %>
+</section>
