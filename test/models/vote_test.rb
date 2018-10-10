@@ -1,8 +1,7 @@
 require "test_helper"
-require 'pry'
 
 describe Vote do
-  
+
   describe "validations" do
     let(:vote) { votes(:one) }
     let(:vote_two) { votes(:two) }
@@ -53,8 +52,6 @@ describe Vote do
       expect(work).must_be_instance_of Work
       expect(work.id).must_equal vote.work_id
     end
-
   end
-
 
 end
