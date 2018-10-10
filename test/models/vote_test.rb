@@ -2,9 +2,7 @@ require "test_helper"
 require 'pry'
 
 describe Vote do
-
-
-
+  
   describe "validations" do
     let(:vote) { votes(:one) }
     let(:vote_two) { votes(:two) }
@@ -15,8 +13,6 @@ describe Vote do
       value(vote).must_be :valid?
     end
 
-    # validates :work_id, presence: true, uniqueness: { scope: :user_id, message: "only one vote per work per user" }
-    #
     it 'is invalid without a work_id' do
       # Arrange
       vote.work_id = nil

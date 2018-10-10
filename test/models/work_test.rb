@@ -5,10 +5,6 @@ describe Work do
   describe "validations" do
     let(:titanic) { works(:titanic) }
     let(:the_big_lebowski) { works(:the_big_lebowski) }
-    # let(:tragic_kindgom) { works(:tragic_kindgom) }
-    # let(:harry_potter) { works(:harry_potter) }
-    # let(:harry_potter_two) { works(:harry_potter_two) }
-    # let(:harry_potter_three) { works(:harry_potter_three) }
 
     it "must be valid" do
       value(titanic).must_be :valid?
