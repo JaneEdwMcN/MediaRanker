@@ -14,5 +14,16 @@
 </section>
 
 <section>
+  <h2><%=@work.votes.count%> Votes for this <%=@work[:category].capitalize%></h2>
+  <table>
+    <th>User</th>
+    <th>Date</th>
+    <% @work.votes.each do |vote| %>
+    <tr>
+      <td><%= link_to vote.user.name, user_path(vote.user.id) %></td>
+      <td><%=  vote.date %></td>
+    </tr>
+    <% end %>
+  </table>
 </section>
 <% end %>

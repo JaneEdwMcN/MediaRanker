@@ -1,0 +1,6 @@
+<% if @user.nil? %>
+<h1> 404 Not found</h1>
+<% else %>
+<h2>User Summary: <%=@user[:name]%></h2>
+<p>Joined site <%=@user[:join_date].strftime("%b %d, %Y")%></p>
+<% end %>

@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
   def login
     user = User.find_by(name: params[:user][:name])
-
     user = User.new(name: params[:user][:name], join_date: Date.today) if user.nil?
     if user.save
       session[:user_id] = user.id
@@ -29,5 +28,10 @@ class UsersController < ApplicationController
   def index
     @current_user = User.find_by(id: session[:user_id])
     @users = User.all
+  end
+
+  def show
+    id = params[:id]
+    @user = User.find_by(id: id)
   end
 end

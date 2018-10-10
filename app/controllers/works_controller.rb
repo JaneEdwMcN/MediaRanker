@@ -3,6 +3,7 @@ class WorksController < ApplicationController
     @current_user = User.find_by(id: session[:user_id])
 
     @works = Work.all
+
   end
 
   def show
@@ -52,6 +53,28 @@ class WorksController < ApplicationController
     if work.destroy
       flash[:success] = "Work #{work.id} deleted!"
       redirect_to root_path
+    end
+  end
+
+  def upvote
+    id = params[:id]
+    work = Work.find_by(id: id)
+    user = User.find_by(id: session[:user_id])
+
+    if user != nil
+      vote = Vote.new(work_id: work.id, user_id: user.id, date: Date.today)
+      if  vote.save
+        flash[:success] = "Successfully upvoted!"
+        redirect_to work_path(work.id)
+      else
+        vote.errors.messages.each do |field, messages|
+          flash[field] = messages
+        end
+        redirect_to work_path(work .id)
+      end
+    else
+      flash[:danger] = "You must be logged in to do that!"
+      redirect_to works_path
     end
   end
 
