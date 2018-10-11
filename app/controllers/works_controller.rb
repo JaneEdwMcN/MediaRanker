@@ -50,6 +50,7 @@ class WorksController < ApplicationController
 
   def upvote
     user = User.find_by(id: session[:user_id])
+    # @current_user
     if user != nil
       vote = Vote.new(work_id: @work.id, user_id: user.id, date: Date.today)
       if  vote.save
