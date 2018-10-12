@@ -51,6 +51,11 @@ a, h2, h3 {
   color: #26A69A;
 }
 
+a:hover {
+    color: #00796B;
+    text-decoration: none;
+}
+
 main {
   padding: 2rem;
 }
@@ -184,6 +189,11 @@ main {
     border-color: #26A69A;
 }
 
+.btn:hover {
+    background-color: #00796B;
+    color: white;
+}
+
 .works-votes__container {
     margin-top: 2rem;
 }
@@ -199,4 +209,8 @@ main {
     color: #856404;
     background-color: #fff3cd;
     border-color: #ffeeba;
+}
+
+.table {
+    width: 100%;
 }

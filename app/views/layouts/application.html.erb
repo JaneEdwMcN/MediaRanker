@@ -32,18 +32,23 @@
       </ul>
     </nav>
   </header>
-
+  <% if flash.count != 0 %>
   <section class="alert__container">
-    <% flash.each do |name, message| %>
-    <% if message.class == Array %>
-    <% message.each do |msg| %>
-    <div class="alert-warning"><%= "#{name}: #{msg}" %></div>
-    <% end %>
-    <% else %>
-    <div class="alert alert-warning"><%= message %></div>
-    <% end %>
-    <% end %>
+    <div class="alert alert-warning">
+      <% flash.each do |name, message| %>
+      <ul>
+        <% if message.class == Array %>
+        <% message.each do |msg| %>
+        <li>  <%= "#{name}: #{msg}" %></li>
+        <% end %>
+      </ul>
+      <% else %>
+      A problem occurred: <%= message %>
+      <% end %>
+      <% end %>
+    </div>
   </section>
+  <% end %>
   <main>
     <%= yield %>
   </main>
