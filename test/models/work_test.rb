@@ -81,7 +81,16 @@ describe Work do
       expect(result).must_equal false
     end
 
-    it 'a description must be 5  or more characters' do
+    it 'a category must be a book, movie, or album' do
+      # Arrange
+      titanic.category = "cat"
+      # Act
+      result = titanic.valid?
+      # Assert
+      expect(result).must_equal false
+    end
+
+    it 'a description must be 5 or more characters' do
       # Arrange
       titanic.description = "cat"
       # Act

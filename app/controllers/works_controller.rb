@@ -17,7 +17,7 @@ class WorksController < ApplicationController
       flash[:success] = "Work Created!"
       redirect_to work_path(@work .id)
     else
-      flash.now[:danger] = "Work not created."
+      flash.now[:warning] = "A problem occurred: Work not created."
       @work.errors.messages.each do |field, messages|
         flash.now[field] = messages
       end
@@ -32,7 +32,7 @@ class WorksController < ApplicationController
       flash[:success] = "Work Updated!"
       redirect_to work_path(@work .id)
     else
-      flash.now[:danger] = "Work not edited."
+      flash.now[:warning] = "A problem occurred:  Work not edited."
       @work.errors.messages.each do |field, messages|
         flash.now[field] = messages
       end
@@ -56,13 +56,14 @@ class WorksController < ApplicationController
       if  vote.save
         flash[:success] = "Successfully upvoted!"
       else
+        flash[:warning] =" A problem occurred: Could not upvote"
         vote.errors.messages.each do |field, messages|
           flash[field] = messages
         end
       end
       redirect_to work_path(@work .id)
     else
-      flash[:danger] = "You must be logged in to do that!"
+      flash[:warning] = "A problem occurred:  You must be logged in to do that!"
       redirect_to works_path
     end
   end
@@ -76,7 +77,7 @@ class WorksController < ApplicationController
   def find_work
     @work = Work.find_by(id: params[:id].to_i)
     if @work.nil?
-      flash.now[:warning] = "Unable to find work."
+      flash.now[:warning] = "A problem occurred: Unable to find work."
       render :not_found
     end
   end

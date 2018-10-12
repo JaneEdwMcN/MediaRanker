@@ -1,17 +1,23 @@
 class UsersController < ApplicationController
   def login
     user = User.find_by(name: params[:user][:name])
-    user = User.new(name: params[:user][:name], join_date: Date.today) if user.nil?
-    if user.save
-      session[:user_id] = user.id
-      flash[:success] = "Welcome #{user.name}."
-      redirect_to root_path
-    else
-      flash.now[:danger] = "User not created."
-      user.errors.messages.each do |field, messages|
-        flash.now[field] = messages
+    if user.nil?
+      user = User.new(name: params[:user][:name], join_date: Date.today)
+      if user.save
+        session[:user_id] = user.id
+        flash[:success] = "Successfully created new user #{user.name} with ID #{user.id}."
+        redirect_to root_path
+      else
+        flash.now[:warning] = "A problem occurred: User not created."
+        user.errors.messages.each do |field, messages|
+          flash.now[field] = messages
+        end
+        render :new
       end
-      render :new
+    else
+      session[:user_id] = user.id
+      flash[:success] = "Successfully logged in as existing user #{user.name}."
+      redirect_to root_path
     end
   end
 

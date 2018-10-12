@@ -5,6 +5,9 @@ class Work < ApplicationRecord
   validates :creator, presence: true
   validates :publication_year, presence: true, numericality: { only_integer: true, greater_than: 0,  less_than: 2019}
   validates :description, presence: true, length: { in: 5..250 }
+  CATEGORIES = %w(album book movie)
+  validates :category, presence: true, inclusion: { in: CATEGORIES}
+
 
   def self.top_work
     return Work.all.sort_by {|work| work.votes.count}.reverse.first
