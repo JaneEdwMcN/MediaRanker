@@ -55,13 +55,12 @@ class WorksController < ApplicationController
       vote = Vote.new(work_id: @work.id, user_id: user.id, date: Date.today)
       if  vote.save
         flash[:success] = "Successfully upvoted!"
-        redirect_to work_path(@work.id)
       else
         vote.errors.messages.each do |field, messages|
           flash[field] = messages
         end
-        redirect_to work_path(@work .id)
       end
+      redirect_to work_path(@work .id)
     else
       flash[:danger] = "You must be logged in to do that!"
       redirect_to works_path
