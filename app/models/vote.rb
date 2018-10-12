@@ -11,7 +11,7 @@ class Vote < ApplicationRecord
       vote = Vote.new(work_id: work.id, user_id: user.id, date: Date.today)
       return vote
     end
-      return nil
+    return nil
   end
 
 end
