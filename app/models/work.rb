@@ -18,7 +18,7 @@ class Work < ApplicationRecord
   end
 
   def self.top_albums_list
-    albums =  Work.where(category: 'album').sort_by {|work| work.votes.count}.reverse!
+    albums =  Work.album_list
     return albums if albums.length < 10
     return albums[0..9]
   end
@@ -28,7 +28,7 @@ class Work < ApplicationRecord
   end
 
   def self.top_books_list
-    books =  Work.where(category: 'book').sort_by {|work| work.votes.count}.reverse!
+    books =  Work.book_list
     return books if books.length < 10
     return books[0..9]
   end
@@ -38,7 +38,7 @@ class Work < ApplicationRecord
   end
 
   def self.top_movies_list
-    movies =  Work.where(category: 'movie').sort_by {|work| work.votes.count}.reverse!
+    movies =  Work.movie_list
     return movies  if movies.length < 10
     return movies[0..9]
   end
