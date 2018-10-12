@@ -49,10 +49,8 @@ class WorksController < ApplicationController
   end
 
   def upvote
-    user = User.find_by(id: session[:user_id])
-    # @current_user
-    if user != nil
-      vote = Vote.new(work_id: @work.id, user_id: user.id, date: Date.today)
+    if @current_user
+      vote = Vote.new(work_id: @work.id, user_id: @current_user.id, date: Date.today)
       if  vote.save
         flash[:success] = "Successfully upvoted!"
       else
