@@ -48,26 +48,6 @@ class WorksController < ApplicationController
     end
   end
 
-  def upvote
-    user = User.find_by(id: session[:user_id])
-    # @current_user
-    if user != nil
-      vote = Vote.new(work_id: @work.id, user_id: user.id, date: Date.today)
-      if  vote.save
-        flash[:success] = "Successfully upvoted!"
-      else
-        flash[:warning] =" A problem occurred: Could not upvote"
-        vote.errors.messages.each do |field, messages|
-          flash[field] = messages
-        end
-      end
-      redirect_to work_path(@work .id)
-    else
-      flash[:warning] = "A problem occurred:  You must be logged in to do that!"
-      redirect_to works_path
-    end
-  end
-
   private
 
   def work_params

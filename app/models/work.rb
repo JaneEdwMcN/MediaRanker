@@ -8,7 +8,6 @@ class Work < ApplicationRecord
   CATEGORIES = %w(album book movie)
   validates :category, presence: true, inclusion: { in: CATEGORIES}
 
-
   def self.top_work
     return Work.all.sort_by {|work| work.votes.count}.reverse.first
   end

@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   root 'main#index'
   resources :works
 
-  post 'works/:id/upvote', to: 'works#upvote', as: 'upvote'
+  post 'works/:id/upvote', to: 'votes#create', as: 'upvote'
 
   get 'users', to: 'users#index', as: 'users'
   get 'users/:id', to: 'users#show', as: 'user'
