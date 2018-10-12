@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   post 'users/login', to: 'users#login', as: 'login'
   get 'users/login', to: 'users#new'
-  delete 'users/destroy', to: 'users#destroy', as: 'logout'
+  delete 'users/logout', to: 'users#destroy', as: 'logout'
 
   root 'main#index'
   resources :works
