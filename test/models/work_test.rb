@@ -111,33 +111,33 @@ describe Work do
 
   describe "custom methods" do
     it 'display a list of albums' do
-      Work.album_list.each do |work|
+      Work.category_list('album').each do |work|
         expect(work.category).must_equal "album"
       end
     end
 
     it 'display a list of Movies' do
-      Work.movie_list.each do |work|
+      Work.category_list('movie').each do |work|
         expect(work.category).must_equal "movie"
       end
     end
 
     it 'display a list of Books' do
-      Work.book_list.each do |work|
+      Work.category_list('book').each do |work|
         expect(work.category).must_equal "book"
       end
     end
 
     it 'display a list of top movies' do
-      expect(Work.top_movies_list[0].title).must_equal "Titanic"
+      expect(Work.top_category_list('movie')[0].title).must_equal "Titanic"
     end
 
     it 'display a list of top books' do
-      expect(Work.top_books_list[0].title).must_equal "Harry Potter"
+      expect(Work.top_category_list('book')[0].title).must_equal "Harry Potter"
     end
 
     it 'display a list of top albums' do
-      expect(Work.top_albums_list[0].title).must_equal "Spice World"
+      expect(Work.top_category_list('album')[0].title).must_equal "Spice World"
     end
   end
 
