@@ -13,34 +13,14 @@ class Work < ApplicationRecord
     return Work.all.sort_by {|work| work.votes.count}.reverse.first
   end
 
-  def self.album_list
-    return Work.where(category: 'album').sort_by {|work| work.votes.count}.reverse!
+  def self.category_list(category)
+    return Work.where(category: category).sort_by {|work| work.votes.count}.reverse!
   end
 
-  def self.top_albums_list
-    albums =  Work.album_list
-    return albums if albums.length < 10
-    return albums[0..9]
-  end
-
-  def self.book_list
-    return Work.where(category: 'book').sort_by {|work| work.votes.count}.reverse!
-  end
-
-  def self.top_books_list
-    books =  Work.book_list
-    return books if books.length < 10
-    return books[0..9]
-  end
-
-  def self.movie_list
-    return Work.where(category: 'movie').sort_by {|work| work.votes.count}.reverse!
-  end
-
-  def self.top_movies_list
-    movies =  Work.movie_list
-    return movies  if movies.length < 10
-    return movies[0..9]
+  def self.top_category_list(category)
+    top_categories =  Work.category_list(category)
+    return top_categories if top_categories.length < 10
+    return top_categories[0..9]
   end
 
 end

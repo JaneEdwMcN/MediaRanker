@@ -3,12 +3,14 @@
 
   <p class = "spotlight__description"><%= Work.top_work.votes.count %> votes - <%= Work.top_work.description %></p>
 </section>
+
 <hr class = "root__hr">
+
 <section class = "top-ten__container">
   <section class = "top-ten__list-container">
     <h2 class = "top-ten__header">Top Movies</h2>
     <ul class = "list-group top-ten__list">
-      <% Work.top_movies_list.each do |work| %>
+      <% Work.top_category_list("movie").each do |work| %>
       <li class = "list-group-item">
         <h4><%= link_to work.title, work_path(work.id) %>
           <small class = "top-ten__creator">by <%=  work.creator  %></small>
@@ -22,10 +24,10 @@
   <section class = "top-ten__list-container">
     <h2 class = "top-ten__header">Top Books</h2>
     <ul class = "list-group top-ten__list">
-      <% Work.top_books_list.each do |work| %>
+      <% Work.top_category_list("book").each do |work| %>
       <li class = "list-group-item">
         <h4><%= link_to work.title, work_path(work.id) %>
-            <small class = "top-ten__creator">by <%=  work.creator  %></small>
+          <small class = "top-ten__creator">by <%=  work.creator  %></small>
         </h4>
         <p><%= work.votes.count%> votes</p>
       </li>
@@ -36,13 +38,13 @@
   <section class = "top-ten__list-container">
     <h2 class = "top-ten__header">Top Albums</h2>
     <ul class = "list-group top-ten__list">
-      <% Work.top_albums_list.each do |work| %>
+      <% Work.top_category_list("album").each do |work| %>
       <li class = "list-group-item">
         <h4><%= link_to work.title, work_path(work.id) %>
-            <small class = "top-ten__creator">by <%=  work.creator  %></small>
+          <small class = "top-ten__creator">by <%=  work.creator  %></small>
         </h4>
         <p><%= work.votes.count%> votes</p>
-      <% end %>
-    </ul>
+        <% end %>
+      </ul>
+    </section>
   </section>
-</section>
